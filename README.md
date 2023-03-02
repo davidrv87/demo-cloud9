@@ -5,3 +5,5 @@ This demo will:
 - Send the list to an SNS topic.
 
 The email address subscribed to the SNS topic will receive an email with the list of buckets
+
+![Architecture diagram](architecture.png)
