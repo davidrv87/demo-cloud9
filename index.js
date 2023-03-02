@@ -1,6 +1,8 @@
 const { S3Client, ListBucketsCommand } = require("@aws-sdk/client-s3");
 const { SNSClient, PublishCommand } = require("@aws-sdk/client-sns");
 
+const config = require("./config");
+
 const s3Client = new S3Client({ region: "eu-west-3", apiVersion: "2006-03-01" });
 const snsClient = new SNSClient({ region: "eu-west-3", apiVersion: "2010-03-31" });
 
@@ -22,9 +24,9 @@ const getListOfBuckets = async () => {
 const publishSNSMessage = async (message) => {
   console.log("Publishing the message to SNS topic")
   const input = {
-    TopicArn: "arn:aws:sns:eu-west-3:458213628860:demo-cloud9-topic",
+    TopicArn: config.topicArn,
     Message: message,
-    Subject: "This is a demo message"
+    Subject: config.emailSubject
   };
 
   const cmd = new PublishCommand(input);
